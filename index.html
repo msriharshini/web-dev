@@ -3,50 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Coming Soon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
 
-    <!-- Favicon (Website Icon in Browser Tab) -->
-    <link rel="icon" type="image/png" href="./images/favicon-32x32.png">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Josefin Sans', sans-serif;
+        }
 
-    <link rel="stylesheet" href="styles.css">
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: hsl(0, 100%, 98%);
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            flex: 1;
+            padding: 50px;
+        }
+
+        .logo {
+            width: 150px;
+        }
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 3rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+
+        .we-are {
+            color: hsl(0, 36%, 70%);
+            font-weight: 300;
+            letter-spacing: 5px;
+        }
+
+        .coming,
+        .soon {
+            color: black;
+            font-weight: 600;
+        }
+
+        .description {
+            color: hsl(0, 36%, 70%);
+            font-size: 16px;
+            margin: 20px 0;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 2px solid hsl(0, 36%, 70%);
+            border-radius: 50px;
+            padding: 5px;
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 50px;
+        }
+
+        button {
+            background: hsl(0, 74%, 74%);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button img {
+            width: 20px;
+        }
+
+        .error-icon {
+            position: absolute;
+            right: 60px;
+            width: 20px;
+            display: none;
+        }
+
+        .error-message {
+            color: hsl(0, 74%, 74%);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <!-- Logo at the top -->
-            <img src="./images/logo.svg" alt="Logo" class="logo">
-        </header>
-
-        <section class="hero">
-            <div class="hero-text">
-                <h1>We're coming soon</h1>
-                <p>Subscribe to get notified when we launch.</p>
-
-                <!-- Email Form -->
-                <form id="email-form">
-                    <input type="email" id="email" placeholder="Enter your email">
-                    <button type="submit">
-                        <!-- Arrow Icon inside the Button -->
-                        <img src="./images/icon-arrow.svg" alt="Submit">
-                    </button>
-                    <span id="error-message" class="error-message">
-                        <!-- Error Icon (Only visible when error appears) -->
-                        <img src="./images/icon-error.svg" alt="Error">
-                    </span>
-                </form>
-            </div>
-
-            <!-- Hero Images (Background and Mobile Version) -->
-            <div class="hero-image">
-                <!-- Background Pattern for Desktop -->
-                <img src="./images/hero-desktop.jpg" alt="Background Image" class="desktop-image">
-                
-                <!-- Hero Image for Mobile -->
-                <img src="./images/hero-mobile.jpg" alt="Hero Image Mobile" class="mobile-image">
-            </div>
-        </section>
+        <div class="content">
+            <img src="./images/logo.svglogo.svg" alt="Base Apparel Logo" class="logo">
+            <h1 class="title">
+                <span class="we-are">WE'RE</span>
+                <span class="coming">COMING</span>
+                <span class="soon">SOON</span>
+            </h1>
+            <p class="description">
+                Hello fellow shoppers! We're currently building our new fashion store. 
+                Add your email below to stay up-to-date with announcements and our launch deals.
+            </p>
+            <form id="email-form" novalidate>
+                <div class="input-wrapper">
+                    <input type="email" id="email" placeholder="Email Address">
+                    <img src="./images/icon-error.svgicon-error.svg" alt="Error Icon" class="error-icon">
+                    <button type="submit"><img src="./images/icon-arrow.svgicon-arrow.svg" alt="Arrow"></button>
+                </div>
+                <p class="error-message">Please provide a valid email</p>
+            </form>
+        </div>
+        <div class="hero">
+            <img src="./images/hero-desktop.jpghero-desktop.jpg" alt="Hero Image">
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("email-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let emailInput = document.getElementById("email");
+            let errorMessage = document.querySelector(".error-message");
+            let errorIcon = document.querySelector(".error-icon");
+            
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            
+            if (!emailInput.value.match(emailPattern)) {
+                errorMessage.style.display = "block";
+                errorIcon.style.display = "block";
+                emailInput.style.border = "2px solid hsl(0, 74%, 74%)";
+            } else {
+                errorMessage.style.display = "none";
+                errorIcon.style.display = "none";
+                emailInput.style.border = "2px solid hsl(0, 36%, 70%)";
+            }
+        });
+    </script>
 </body>
 </html>
