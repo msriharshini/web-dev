@@ -24,6 +24,7 @@
 
         .container {
             display: flex;
+            flex-direction: row;
             width: 90%;
             max-width: 1200px;
             background: white;
@@ -36,7 +37,7 @@
         }
 
         .logo {
-            width: 150px;
+            width: 130px;
         }
 
         .title {
@@ -46,7 +47,7 @@
             font-size: 3rem;
             line-height: 1.2;
             text-transform: uppercase;
-            margin: 20px 0;
+            margin: 40px 0;
         }
 
         .we-are {
@@ -65,7 +66,7 @@
         .description {
             color: hsl(0, 36%, 70%);
             font-size: 16px;
-            margin: 20px 0;
+            margin: 30px 0;
         }
 
         .input-wrapper {
@@ -125,6 +126,57 @@
             max-width: 100%;
             height: auto;
         }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            body {
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .container {
+                flex-direction: column-reverse;
+                text-align: center;
+                position: relative;
+            }
+
+            .logo {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                width: 120px;
+                z-index: 10;
+            }
+
+            .content {
+                padding: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 60px; /* Added space below the logo */
+            }
+
+            .title {
+                font-size: 2.5rem;
+                align-items: center;
+            }
+
+            .input-wrapper {
+                max-width: 100%;
+            }
+
+            /* Adjust image for mobile */
+            .hero {
+                width: 100%;
+                margin-top: 80px; /* Added space between logo and hero image */
+            }
+
+            .hero img {
+                content: url('./images/hero-mobile.jpg');
+                width: 100%;
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -150,7 +202,10 @@
             </form>
         </div>
         <div class="hero">
-            <img src="./images/hero-desktop.jpg" alt="Hero Image">
+            <picture>
+                <source srcset="./mnt/data/hero-mobile.jpg" media="(max-width: 768px)">
+                <img src="./images/hero-desktop.jpg" alt="Hero Image">
+            </picture>
         </div>
     </div>
 
